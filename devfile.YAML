@@ -1,0 +1,12 @@
+schemaVersion: 2.2.0
+metadata:
+  name: my-workspace
+  version: 1.0.0
+  displayName: My Workspace
+  description: Workspace for My Project
+
+starterProjects:
+  - name: go-temp
+    git:
+      remotes:
+        origin: "https://github.com/atiq-rahman-or/gotemp.git"
