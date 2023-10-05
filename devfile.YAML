@@ -1,9 +1,38 @@
 schemaVersion: 2.2.0
 metadata:
-  name: iCR
+  name: iCR-Go
   version: 1.0.0
+spec:
+  description: >-
+    The following task can be used to perform analysis on the source code
+    and send the results to the iCR server specified by the parameter Server-URL
+  params:
+    - name: iCR-License
+      description: The license required to use the iCR to scan the source code.
+
+    - name: Server-URL
+      description: The URL of the Server where data will be sent
+
+    - name: iCR-Username
+      description: The Username for iCR
+      default: admin
+
+    - name: iCR-Password
+      description: The passphrase for iCR  
+      default: admin   
 projects:
   - name: gotemp
     git:
       remotes:
         origin: 'https://github.com/atiq-rahman-or/gotemp.git'
+components:
+  - name: icr-for-go-ae
+    container:
+      image: "docker.io/openrefactory/icr-for-go-ae:1.0.0"
+
+commands:
+  - id: remove-file
+    exec:
+      component: icr-for-go-ae
+      commandLine: "rm -f /projects/gotemp/"
+      workingDir: "/projects/gotemp"
